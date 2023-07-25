@@ -1,0 +1,69 @@
+
+Columnas dropeadas:
+
+codent01 : Identificador de persona codigo 2001
+codent03 : Identificador de persona codigo 2003
+ps3 : Identificador de persona codigo 2001 
+ent2: Identificador de persona codigo 2003
+np: Numero de persona
+rahhidnp : Identificador unico de persona
+unhhidnp : Identificador unico de persona
+acthog : Actualizacion codigo del hogar 
+subhog_01 : Identificador hogar 2001
+subhog_03 : Identificador hogar 2003
+subhog_12 : Identificador hogar 2012
+subhog_15 : Identificador hogar 2015
+subhog_18 : Identificador hogar 2018
+tipent_01 : Tipo de entrevista 2001
+tipent_03 : Tipo de entrevista 2003 
+tipent_12 : Tipo de entrevista 2012
+tipent_15 : Tipo de entrevista 2015
+tipent_18 : Tipo de entrevista 2018
+unhhid : Clave unica del hogar
+cunicah : Clave unica del hogar
+hacohort : simple cohort 
+inw1 : indicador de respuesta ola 1
+inw2 : indicador de respuesta ola 2
+inw3 : indicador de respuesta ola 3
+inw4 : indicador de respuesta ola 4
+inw5 : indicador de respuesta ola 5
+c2000cpindex : Precio consumidor 2000
+c2001cpindex : Precio consumidor 2000
+c2002cpindex : Precio consumidor 2000
+c2003cpindex : Precio consumidor 2000
+c2011cpindex : Precio consumidor 2000 
+c2012cpindex : Precio consumidor 2000
+c2013cpindex : Precio consumidor 2000
+c2014cpindex : Precio consumidor 2000
+c2015cpindex : Precio consumidor 2000
+c2016cpindex : Precio consumidor 2000
+c2017cpindex : Precio consumidor 2000
+c2018cpindex : Precio consumidor 2000
+c2019cpindex : Precio consumidor 2000
+raliterate : sabe leer y escribir
+rabyear : año cumpleaños 
+rabmonth : mes cumpleaños
+radyear : año muerte
+radmonth : año muerte
+raedyrs : años de educacion
+raedisced : años de educacion ISCED
+raeducl : categoria educacion armonizada
+ranumerate : sabe contar
+raindlang : habla un idioma indigena
+rameduc_m : educacion de la madre
+rafeduc_m : educacion del padre
+
+Columnas Renombradas: 
+hh1ctot1m,
+hh2ctot1m,
+hh3ctot1m,
+hh4ctot1m,
+hh5ctot1m,
+hh1cftot1m,
+hh2cftot1m,
+hh3cftot1m,
+hh4cftot1m,
+hh5cftot1m
+
+
+
