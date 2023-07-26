@@ -1,0 +1,91 @@
+:root {
+    --color1: #0077ff;
+    --color2: #50a1ff;
+    --color3: #8dcefa;
+    --color4: #C0E0E3;
+    --color5: #E6F5FF;
+}
+
+
+body {
+    font-family: "console", monospace;
+    background-color: var(--color5);
+    color: #34495e;
+}
+
+h1 {
+    position: top;
+    margin-bottom: 50px;
+}
+  
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25rem;
+}
+  
+form {
+    background-color: var(--color3);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--color1);
+    width: 100%;
+    height: 130%;
+    margin-top: 50px;
+}
+  
+h1 {
+    text-align: center;
+}
+  
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+input[type="text"], input[type="number"], select, button, input[type="range"] {
+    width: 20%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+}
+  
+select {
+    appearance: none;
+}
+  
+.checkboxes,.radios {
+    margin-bottom: 10px;
+}
+  
+.checkboxes label, .radios label {
+    margin-right: 10px;
+}
+  
+button {
+    display: block;
+    width: 10%;
+    background-color: var(--color2); /* Azul claro para el botón */
+    color: var(--color5);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+  
+/* Media queries para adaptar el formulario a diferentes tamaños de pantalla */
+  
+@media screen and (max-width: 768px) {
+    form {
+      width: 80%;
+    }
+}
+  
+@media screen and (max-width: 480px) {
+    form {
+      width: 90%;
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospitalization Prediction</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>TAKE CARE OF YOURSELF</h1>
+    <div class="container">
+        <form id="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Biological gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select an option</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label>Options:</label>
+            <div class="checkboxes">
+                <label><input type="checkbox" name="preference" value="option1">option 1</label>
+                <label><input type="checkbox" name="preference" value="option2">option 2</label>
+                <label><input type="checkbox" name="preference" value="option3">option 3</label>
+            </div>
+
+            <label>Options</label>
+            <div class="radios">
+                <label><input type="radio" name="status" value="single">option 1</label>
+                <label><input type="radio" name="status" value="married">option 2</label>
+                <label><input type="radio" name="status" value="other">option 3</label>
+            </div>
+
+            <label for="range">Range:</label>
+            <input type="range" id="range" name="range">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
