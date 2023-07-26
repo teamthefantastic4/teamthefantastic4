@@ -67,7 +67,7 @@ select {
 button {
     display: block;
     width: 10%;
-    background-color: var(--color2); /* Azul claro para el botón */
+    background-color: var(--color2);
     color: var(--color5);
     cursor: pointer;
     border: none;
@@ -75,8 +75,7 @@ button {
     padding: 10px;
     font-weight: bold;
 }
-  
-/* Media queries para adaptar el formulario a diferentes tamaños de pantalla */
+
   
 @media screen and (max-width: 768px) {
     form {
