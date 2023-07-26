@@ -1,90 +1,178 @@
-:root {
-    --color1: #0077ff;
-    --color2: #50a1ff;
-    --color3: #8dcefa;
-    --color4: #C0E0E3;
-    --color5: #E6F5FF;
-}
+/*Google font Ppoppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,500;1,900&display=swap');
 
+* {
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
 body {
-    font-family: "console", monospace;
-    background-color: var(--color5);
-    color: #34495e;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #4070f4;
+    padding: 5px;
 }
 
-h1 {
-    position: top;
-    margin-bottom: 50px;
-}
-  
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25rem;
-}
-  
-form {
-    background-color: var(--color3);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--color1);
+    position: relative;
+    max-width: 1200px;
     width: 100%;
-    height: 130%;
-    margin-top: 50px;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
 }
-  
-h1 {
-    text-align: center;
+
+.container header {
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+    color: #333;
 }
-  
-label {
+
+.container header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #4070f4;
+}
+
+.container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 490px;
+    background-color: #fff;
+}
+
+.container form .personal-information {
+    margin-top: 20px;
+}
+
+.container form .title {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size:  16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
 }
-  
-input[type="text"], input[type="number"], select, button, input[type="range"] {
-    width: 20%;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    border: none;
+
+.container form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
 }
-  
-select {
-    appearance: none;
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 15px 0;
 }
-  
-.checkboxes,.radios {
+
+form .fields .input-check {
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+form .fields .input-range {
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color:#2e2e2e;
+}
+
+.input-check label {
+    font-size: 12px;
+    font-weight: 500;
+    color:#2e2e2e;
     margin-bottom: 10px;
 }
-  
-.checkboxes label, .radios label {
-    margin-right: 10px;
-}
-  
-button {
-    display: block;
-    width: 10%;
-    background-color: var(--color2);
-    color: var(--color5);
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-weight: bold;
+
+.input-range label {
+    font-size: 12px;
+    font-weight: 500;
+    color:#2e2e2e;
 }
 
-  
-@media screen and (max-width: 768px) {
-    form {
-      width: 80%;
-    }
+.input-field input, select{
+    outline: none;
+    font-size: 11px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 0px solid #aaa;
+    padding: 0 15px;
+    height: 30px;
+    margin: 10px 0;
 }
-  
-@media screen and (max-width: 480px) {
-    form {
-      width: 90%;
-    }
+
+.input-check input{
+    outline: none;
+    font-size: 11px;
+    font-weight: 40;
+    color: #333;
+    border: 0px solid #aaa;
+    height: 20px;
+}
+
+.input-field input:is(:focus, :valid) {
+    box-shadow: 0 1px 5px rgb(0, 0, 0, 1);
+}
+
+.input-field select:is(:focus, :valid) {
+    box-shadow: 0 1px 5px rgb(0, 0, 0, 1);
+}
+
+.input-field input[type='date'] {
+    color: #707070;
+}
+
+.input-field input[type='date']:valid {
+    color: #333;
+}
+
+/*BUTTONS*/
+.container form .reset, .results{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color:#fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #4070f4;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.reset:hover {
+    box-shadow: 2px 2px 10px 5px #333;
+}
+
+.results:hover {
+    box-shadow: 2px 2px 10px 5px #333;
 }

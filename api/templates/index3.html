@@ -1,51 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospitalization Prediction</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Hospitalization Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-    <h1>TAKE CARE OF YOURSELF</h1>
     <div class="container">
-        <form id="form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <header>Caring for yourself</header>
 
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+        <form action="#">
+            <div class="form-first">
+                <div class="personal-information">
+                    <span class="title">Personal Information</span>
+    
+                    <div class="fields">
 
-            <label for="gender">Biological gender:</label>
-            <select id="gender" name="gender" required>
-                <option value="">Select an option</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
+                        <div class="input-field">
+                            <label for="name">Full name</label>
+                            <input name="name" type="text" placeholder="Enter your name">
+                        </div>
 
-            <label>Options:</label>
-            <div class="checkboxes">
-                <label><input type="checkbox" name="preference" value="option1">option 1</label>
-                <label><input type="checkbox" name="preference" value="option2">option 2</label>
-                <label><input type="checkbox" name="preference" value="option3">option 3</label>
+                        <div class="input-field">
+                            <label for="birth">Date of birth</label>
+                            <input name="birth" type="date" placeholder="Enter birth date">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="gender">Gender assigned at birth</label>
+                            <select name="gender">
+                                <option disabled selected>Select an option</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="number1">Number-1</label>
+                            <input name="number1" type="number" placeholder="Number">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="birth">Text-1</label>
+                            <input name="text1" type="text" placeholder="Fill in the field">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="text2">Text-2</label>
+                            <input name="text2" type="text" placeholder="Fill in the field">
+                        </div>
+
+                        <div class="input-check">
+                            <label for="checkbox">Options checkbox</label>
+
+                            <label class="check">
+                                <input type="checkbox" name="checkbox" value="#">
+                                option 1</label>
+                            <label class="check">
+                                <input type="checkbox" name="checkbox" value="#">
+                                option 2</label>
+                            <label class="check">
+                                <input type="checkbox" name="checkbox" value="#">
+                                option 3</label>
+                        </div>
+
+                        <div class="input-check">
+                            <label for="radio">Option radio</label>
+
+                            <label class="check">
+                                <input type="radio" name="radio" value="#">
+                                option 1</label>
+                            <label class="check">
+                                <input type="radio" name="radio" value="#">
+                                option 2</label>
+                            <label class="check">
+                                <input type="radio" name="radio" value="#">
+                                option 3</label>
+                        </div>
+
+                        <div class="input-range">
+                            <label for="gender">Input range</label>
+                            <input type="range" min="0" max="150" step="1" value="0" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="select1">Select-1</label>
+                            <select name="select1">
+                                <option disabled selected>Select an option</option>
+                                <option value="option1">Option-1</option>
+                                <option value="option2">Option-2</option>
+                                <option value="option3">Option-3</option>
+                                <option value="option4">Option-4</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="text3">Text-3</label>
+                            <input name="text3" type="text" placeholder="Text">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="text4">Text-4</label>
+                            <input name="text4" type="text" placeholder="Fill in the field">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="number2">Number-2</label>
+                            <input name="number2" type="number" placeholder="Fill in the field">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="number3">Number-3</label>
+                            <input name="number3" type="number" placeholder="Fill in the field">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="select2">Select-2</label>
+                            <select name="select2">
+                                <option disabled selected>Select an option</option>
+                                <option value="option1">Option-1</option>
+                                <option value="option2">Option-2</option>
+                                <option value="option3">Option-3</option>
+                                <option value="option4">Option-4</option>
+                                <option value="option5">Option-5</option>
+                            </select>
+                        </div>
+
+                        <div class="input-range">
+                            <label for="gender">Input range</label>
+                            <input type="range" min="0" max="150" step="1" value="0" />
+                        </div>
+
+                        <div class="buttons">
+                            <div class="reset">
+                                <span class="resultsText">Reset Form</span>
+                            </div>
+
+                            <button class="results">
+                                <span class="resetText">My Results</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-
-            <label>Options</label>
-            <div class="radios">
-                <label><input type="radio" name="status" value="single">option 1</label>
-                <label><input type="radio" name="status" value="married">option 2</label>
-                <label><input type="radio" name="status" value="other">option 3</label>
-            </div>
-
-            <label for="range">Range:</label>
-            <input type="range" id="range" name="range">
-
-            <button type="submit">Submit</button>
         </form>
     </div>
+    
 </body>
-
 </html>
