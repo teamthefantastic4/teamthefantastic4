@@ -46,6 +46,7 @@ def predict(input_data):
     """
     
     # Preprocess the input data (assuming 'gender', 'weight', 'BMI', 'age', and 'blood_pressure' are provided)
+    
     new_person_data = np.array([
         input_data['gender'],
         input_data['weight'],
@@ -133,7 +134,9 @@ def preprocess_data():
 
     X_train, y_train, X_test, y_test = data_utils.get_feature_target(app_train, app_test)
 
-    train_data, X_val, y_train, y_val = data_utils.get_train_val_sets(X_train, y_train)
+    X_train, X_val, y_train, y_val = data_utils.get_train_val_sets(X_train, y_train)
+
+    train_data, val_data, test_data = preprocessing.preprocess_data(X_train, X_val, X_test)
 
     return train_data, y_train
 
