@@ -2,13 +2,21 @@ import json
 import os
 import time
 from uuid import uuid4
+from src import data_utils
+from src import preprocessing
 
 import numpy as np
 import redis
 import settings
-#from tensorflow.keras.applications import BestModel?
-from tensorflow.keras.applications.resnet50 import decode_predictions, preprocess_input
-from tensorflow.keras.preprocessing import image
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+
+# Normalize numerical features to a common scale (between 0 and 1)
+scaler = MinMaxScaler()
 
 db = redis.Redis(
     host=settings.REDIS_IP, 
@@ -17,46 +25,56 @@ db = redis.Redis(
     decode_responses=True
 )
 
-model = ResNet50(include_top=True, weights="imagenet")
+def predict(input_data):
 
-def predict(image_name):
     """
-    Load image from the corresponding folder based on the image name
+    Load data trained and 
     received, then, run our ML model to get predictions.
 
     Parameters
     ----------
-    image_name : str
-        Image filename.
+
+    # Receive input data from the API request
+    
+    input_data List or Tuple
 
     Returns
     -------
-    class_name, pred_probability : tuple(str, float)
+    pred_probability : tuple(str, float)
         Model predicted class as a string and the corresponding confidence
         score as a number.
     """
+    
+    # Preprocess the input data (assuming 'gender', 'weight', 'BMI', 'age', and 'blood_pressure' are provided)
+    new_person_data = np.array([
+        input_data['gender'],
+        input_data['weight'],
+        input_data['BMI'],
+        input_data['age'],
+        input_data['blood_pressure']
+    ]).reshape(1, -1)
 
-    class_name = None
+    # Normalize the input data using the same scaler used for training data
+    new_person_data_scaled = scaler.transform(new_person_data)
+
     pred_probability = None
 
-    #Loading and preprocessing
-    # TO DO
+    #Loading and preprocessing 
 
-    x_batch = ...
+    new_person_data_scaled = scaler.transform(new_person_data)
 
-    x_batch = preprocess_input(x_batch)
+    # Get the prediction from the model
 
-    try:
-        preds = model.predict(x_batch)
+    prediction = model.predict(new_person_data_scaled)
 
-        predictionLabel = decode_predictions(preds, top = 5)
-        class_name = predictionLabel[0][0][1]
-        pred_probability = round(preds[0,preds.argmax()],4)
+    # Choose a threshold to classify the person has to hospitalize or not
+    threshold = 0.5
+    if prediction[0][0] >= threshold:
+        print("The person has to hospitalize next year.")
+    else:
+        print("The person does not has to hospitalize.")
 
-    except:
-        raise SystemExit("ERROR: Failed to load the Model!")
-
-    return class_name, pred_probability
+    return pred_probability
 
 def classify_process():
     """
@@ -86,15 +104,12 @@ def classify_process():
 
         msg = json.loads(msg)
 
-        #TO DO
-
-        msg_name = msg['msg_name']
+        msg_name = msg['input_data']
         msg_id = msg['id']
 
-        class_name, pred_probability = predict(msg_name)
+        pred_probability = predict(msg_name)
 
         msg_content = {
-            "prediction": class_name,
             "score": str(pred_probability),
         }
 
@@ -106,6 +121,48 @@ def classify_process():
         # Sleep for a bit
         time.sleep(settings.SERVER_SLEEP)
 
+def preprocess_data():
+    
+    # Preprocess Data to Train the Model
+
+    X_train, y_train, X_test, y_test = None
+
+    train_data, y_train = None
+
+    app_train, app_test, columns_description = data_utils.get_datasets()
+
+    X_train, y_train, X_test, y_test = data_utils.get_feature_target(app_train, app_test)
+
+    train_data, X_val, y_train, y_val = data_utils.get_train_val_sets(X_train, y_train)
+
+    return train_data, y_train
+
+def model(input_data):
+
+    # Create the MLP model, Input should be like this X_train.shape[1]
+    model = Sequential()
+    model.add(Dense(64, activation='relu', input_dim=input_data.shape[1]))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))
+
+    # Compile the model
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+    epochs = 100
+    batch_size = 32
+
+    # From Preprocessing get train an val data
+
+    train_data, y_train = preprocess_data()
+
+    model.fit(train_data, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1)
+
+    input_data = np.expand_dims(input_data, axis=0)  # Adding an extra dimension for batch size
+
+    # Send the input data through the trained model to get the predictions
+    predictions = model.predict(input_data)
+
+    return predictions
 
 if __name__ == "__main__":
     # Now launch process
