@@ -1,111 +1,61 @@
-import os
-import json
-
-import settings
 from flask import (
     Blueprint,
-    current_app,
-    flash,
     jsonify,
-    redirect,
     render_template,
     request,
-    url_for,
 )
-from middleware import model_predict
+
 
 router = Blueprint("app_router", __name__, template_folder="templates")
 
-@router.route("/", methods=["GET", "POST"])
+@router.route("/", methods=["GET"])
 def index():
-    """
-    GET: Index endpoint, renders our HTML code.
-
-    POST: Used in our frontend so we can upload and show an image.
-    When it receives an image from the UI, it also calls our ML model to
-    get and display the predictions.
-    """
     if request.method == "GET":
         return render_template("index.html")
 
-    if request.method == "POST":
-        #TO DO
 
+@router.route("/", methods=['POST'])
+def result():
+    try:
+        null_data = [0, '0', None, '']
+        prediction = 'Please complete the form, thank you.'
+        score = 0
+        rpse = {"success": False, "prediction": None, "score": None}
 
-@router.route("/predict", methods=["POST"])
-def predict():
-    """
-    Endpoint used to get predictions without need to access the UI.
+        # check if the form has 0 or null values
+        for x, i in request.form.items():
+            if i in null_data:
+                rpse["success"] = False
+                rpse["prediction"] = prediction
+                rpse["score"] = score
+                break
+        
+        ###########################################################################
+        # REPLACE THIS PART WITH THE MODEL replace this part with the model
+        if rpse['prediction'] == None:
+            total = 0
+            for x, i in request.form.items():
+                total += float(i)
+                if float(i) > score:
+                    score = float(i)
+        
+            score = (score * 100) / total
 
-    Parameters
-    ----------
-    file : str
-        Input image we want to get predictions from.
+            if score >= 80:
+                prediction = 'Very healthy'
+            elif score < 80 and score >= 70:
+                prediction = 'Healthy'
+            elif score < 70 and score >= 50:
+                prediction = 'Stable, but it is recommended that you see a doctor.'
+            else:
+                prediction = 'Please see your doctor!'
+        ###########################################################################
+            rpse["success"] = True
+            rpse["prediction"] = prediction
+            rpse["score"] = score
 
-    Returns
-    -------
-    flask.Response
-        JSON response from our API having the following format:
-            {
-                "success": bool,
-                "prediction": str,
-                "score": float,
-            }
-
-        - "success" will be True if the input file is valid and we get a
-          prediction from our ML model.
-        - "prediction" model predicted class as string.
-        - "score" model confidence score for the predicted class as float.
-    """
-
-    # If user sends an invalid request (e.g. no file provided) this endpoint
-    # should return `rpse` dict with default values HTTP 400 Bad Request code
-    rpse = {"success": False, "prediction": None, "score": None}
-
-    if request.method == "POST":
-
-        #TO DO
-
-        prediction, score = model_predict(...)
-        rpse["success"] = True
-        rpse["prediction"] = prediction
-        rpse["score"] = score
         return jsonify(rpse)
-
-    return jsonify(rpse), 400
-
-
-@router.route("/feedback", methods=["GET", "POST"])
-
-def feedback():
-    """
-    Store feedback from users about wrong predictions on a plain text file.
-
-    Parameters
-    ----------
-    report : request.form
-        Feedback given by the user with the following JSON format:
-            {
-                "filename": str,
-                "prediction": str,
-                "score": float
-            }
-
-        - "filename" corresponds to the image used stored in the uploads
-          folder.
-        - "prediction" is the model predicted class as string reported as
-          incorrect.
-        - "score" model confidence score for the predicted class as float.
-    """
-    # Store the reported data to a file on the corresponding path
-    # already provided in settings.py module (settings.FEEDBACK_FILEPATH)
-    # TODO
-
-    report = request.form.get("report")
-
-    if report:
-        with open(settings.FEEDBACK_FILEPATH, "a") as outfile:
-            outfile.write(report + "\n")
-
-    # Don't change this line
-    return render_template("index.html")
+        
+    except Exception as e:
+        print(f'Error: {e}')
+        return jsonify(rpse), 400
