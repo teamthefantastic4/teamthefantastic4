@@ -1,47 +1,184 @@
-<!doctype html>
-<html>
-    <head>
-        <title>ML API</title>
-    </head>
-    <body>
-        <h2>Select a image file to upload</h2>
-        <p>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}
-        </p>
-        {% if filename %}
-            <div>
-                <img src="{{ url_for('app_router.display_image', filename=filename) }}">
-            </div>
-            {% if context['prediction'] %}
-                <div class="row">
-                    <div class="col-25">
-                    <label for="subject">Predicted class: {{ context['prediction'] }} </label><br>
-                    <label for="subject">Score: {{ context['score'] }} </label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Hospitalization Prediction</title>
+</head>
+<body>
+
+    <div class="container">
+        <header>Caring for Yourself</header>
+        <h4>Hospitalization Prediction</h4>
+        
+        <form action="/" method="post" id="myForm">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+    
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Number-1</label>
+                            <input name=n1 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-2</label>
+                            <input name=n2 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-3</label>
+                            <input name=n3 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-4</label>
+                            <input name=n4 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-5</label>
+                            <select value=0 name=n5 class="select1">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=1 class="opt1">option-1</option>
+                                <option value=2 class="opt2">option-2</option>
+                                <option value=3 class="opt3">option-3</option>
+                                <option value=4 class="opt4">option-4</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-6</label>
+                            <input name=n6 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-7</label>
+                            <input name=n7 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-8</label>
+                            <input name=n8 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-9</label>
+                            <input name=n9 type="number"  placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-10</label>
+                            <input name=n10 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-11</label>
+                            <input name=n11 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-12</label>
+                            <input name=n12 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-13</label>
+                            <input name=n13 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-14</label>
+                            <input name=n14 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-15</label>
+                            <input name=n15 type="number" placeholder="Fill this field">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Number-16</label>
+                            <input name=n16 type="number" placeholder="Fill this field">
+                        </div>
+                        
+                        <div class="buttons">
+                            <div class="resetBtn" id="resetButton">
+                                <span class="btnText">Reset Form</span>
+                            </div>
+    
+                            <button class="resultBtn" type="button" id="submitBtn">
+                                <span class="btnText">My Result</span>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
-                <form id="form" method="POST" action="/feedback">
-                    <button type="submit">Report incorrect answer</button>
-                    <input name="report" style="visibility: hidden;" value="{'filename': '{{ filename }}', 'prediction': '{{ context['prediction'] }}', 'score': {{ context['score'] }} }"/>
-                </form>
-            {% endif %}
-        {% endif %}
-        <form method="post" action="/" enctype="multipart/form-data">
-            <dl>
-                <p>
-                    <input type="file" name="file" autocomplete="off" required>
-                </p>
-            </dl>
-            <p>
-                <input type="submit" value="Submit">
-            </p>
-        </form>
-    </body>
+            </div>
+
+            <!---RESULT PAGE-->
+            <div class="form second">
+                <div class="details personal">
+                    
+                    <label id="healthStatus"></label>
+                    <span class="myResultText" id="predictTxt"></span><br>
+                    <label id="healthScore"></label>
+                    <span class="myScoreText" id="scoreTxt"></span>
+                    <div class="fields">
+
+                        <div class="buttons">
+                            <div class="backBtn" id="backButton">
+                                <span class="btnText">Back to Form</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#resetButton").click(function () {
+                            $(".form.first").show();
+                            $(".form.second").show();
+            })
+
+            $("#backButton").click(function () {
+                            $(".form.first").show();
+                            $(".form.second").show();
+            })
+
+            $("#submitBtn").click(function () {
+            // Get the form data
+                var formData = $("#myForm").serialize();
+
+        // Make the AJAX request to the server
+                $.ajax({
+                    type: "POST",
+                    url: "/", // The path of the POST view
+                    data: formData,
+                    success: function (data) {
+                        // Show the results and hide the form
+                        $(".form.first").hide();
+                        $(".form.second").show();
+                        $("#predictTxt").text(data.prediction);
+                        if(data.score != 0){
+                            $("#scoreTxt").text(data.score);
+                        }
+                        
+                    },
+                    error: function (data) {
+                        alert("The form contains invalid data, please complete the form correctly, thank you.");
+                        $("#predictTxt").text('Please complete the form, thank you!');
+                    },
+                });
+            });
+        });
+    </script>
+</body>
 </html>
