@@ -11,7 +11,7 @@
 <body>
 
     <div class="container">
-        <header>Caring for Yourself</header>
+        <header >Caring for Yourself</header>
         <h4>Hospitalization Prediction</h4>
         
         <form action="/" method="post" id="myForm">
@@ -124,12 +124,15 @@
             <div class="form second">
                 <div class="details personal">
                     
-                    <label id="healthStatus"></label>
-                    <span class="myResultText" id="predictTxt"></span><br>
-                    <label id="healthScore"></label>
-                    <span class="myScoreText" id="scoreTxt"></span>
-                    <div class="fields">
+                    <div class="diagnosis">
+                        <label class="labelPredict" id="predictLabel"></label><br>
+                        <span class="predictTxt" id="predictTxt"></span><br>
+                        <label class="labelScore" id="scoreLabel"></label><br>
+                        <span class="scoreTxt" id="scoreTxt"></span>
+                    </div>
 
+                    
+                    <div class="fields">
                         <div class="buttons">
                             <div class="backBtn" id="backButton">
                                 <span class="btnText">Back to Form</span>
@@ -143,10 +146,6 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $("#resetButton").click(function () {
-                            $(".form.first").show();
-                            $(".form.second").show();
-            })
 
             $("#backButton").click(function () {
                             $(".form.first").show();
@@ -166,15 +165,20 @@
                         // Show the results and hide the form
                         $(".form.first").hide();
                         $(".form.second").show();
-                        $("#predictTxt").text(data.prediction);
-                        if(data.score != 0){
+
+                        if(data.success == true){
+                            $("#predictLabel").text(data.prediction_label)
+                            $("#predictTxt").text(data.prediction);
+                            $("#scoreLabel").text(data.score_label)
                             $("#scoreTxt").text(data.score);
                         }
                         
                     },
                     error: function (data) {
-                        alert("The form contains invalid data, please complete the form correctly, thank you.");
-                        $("#predictTxt").text('Please complete the form, thank you!');
+                        if (data.success == false) {
+                            alert("Error attempting a request.");
+                        }
+                        
                     },
                 });
             });
