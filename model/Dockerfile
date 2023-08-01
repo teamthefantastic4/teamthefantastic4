@@ -1,7 +1,7 @@
 FROM python:3.8.13 as base
 
-ARG UID
-ARG GID
+ARG UID=1000
+ARG GID=1000
 
 # Add a non-root user
 RUN addgroup --gid $GID app
