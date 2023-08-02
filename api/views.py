@@ -8,7 +8,10 @@ from flask import (
     request,
 )
 from middleware import model_predict
+
+# Logging for debugging
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
+
 router = Blueprint("app_router", __name__, template_folder="templates")
 
 @router.route("/", methods=["GET"])
@@ -16,7 +19,6 @@ def index():
     """
     GET: Index endpoint, renders our HTML code.
     """
-
     return render_template("index.html")
 
 @router.route("/", methods=["POST"])
@@ -28,7 +30,9 @@ def result():
     """
     try:
         null_data = [0, '0', None, '']
-        rpse = {"success": False, "prediction": None, "score": None}
+        rpse = {"success": False, "prediction": None, "score": None,
+                "prediction_label": None, "score_label": None
+                }
         
         # Check if the form has 0 or null values
         if any(value in null_data for key, value in request.form.items()):
@@ -49,6 +53,8 @@ def result():
         "success": True,
         "prediction": prediction,
         "score": score,
+        "prediction_label": "Health Status: ",
+        "score_label": "Score: "
         }
 
     except Exception as e:

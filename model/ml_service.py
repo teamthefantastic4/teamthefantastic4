@@ -82,8 +82,7 @@ db = redis.Redis(
 def predict_temp(input_data):
 
     """
-    Temporal function to test connection to Redis
-    
+    Temporal function to test connection to Redis and ML model.    
     """
     try:
         total = 0

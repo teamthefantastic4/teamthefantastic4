@@ -22,11 +22,6 @@ tipent_18 : Tipo de entrevista 2018
 unhhid : Clave unica del hogar
 cunicah : Clave unica del hogar
 hacohort : simple cohort 
-inw1 : indicador de respuesta ola 1
-inw2 : indicador de respuesta ola 2
-inw3 : indicador de respuesta ola 3
-inw4 : indicador de respuesta ola 4
-inw5 : indicador de respuesta ola 5
 c2000cpindex : Precio consumidor 2000
 c2001cpindex : Precio consumidor 2000
 c2002cpindex : Precio consumidor 2000
@@ -52,6 +47,11 @@ ranumerate : sabe contar
 raindlang : habla un idioma indigena
 rameduc_m : educacion de la madre
 rafeduc_m : educacion del padre
+inw1 : indicador de respuesta ola 1
+inw2 : indicador de respuesta ola 2
+inw3 : indicador de respuesta ola 3
+inw4 : indicador de respuesta ola 4
+inw5 : indicador de respuesta ola 5
 
 Columnas Renombradas: 
 hh1ctot1m,
@@ -66,4 +66,30 @@ hh4cftot1m,
 hh5cftot1m
 
 
+---------------------------------------------------------------
 
+Cambios en el Reshape: 
+
+Dataset original 
+26839 rows x 5255 columns
+
+Dataset con reshape 
+168205 rows × 715 columns
+
+Dataset con columnas descartadas 
+168205 rows × 662 columns
+
+Dataset con menores de 50 años descartados
+
+159002 rows × 662 columns
+
+Dataset con fila target NaN descartada 
+
+115171 rows × 662 columns
+
+Drop del 50% de filas nulas 
+101521 rows × 662 columns
+
+Drop del 50% de columnas nulas 
+
+101521 rows × 365 columns
