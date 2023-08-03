@@ -1,0 +1,9 @@
+['cholst', 'oopmdf1y', 'nagi10', 'hrtatte', 'grossa', 'oopdoc1y',
+       'nagi8', 'rxhrtat', 'adla_m', 'batha', 'grossaa', 'adltot_m',
+       'iadlfour', 'bmi', 'mobila', 'rxdiabi', 'hhid', 'hip_m', 'atotb',
+       'push', 'fallinj', 'hhidc', 'shopa', 'wtresp', 'mobilsev', 'bath',
+       'itot', 'walks', 'hltc', 'agey', 'shop', 'ctot1m', 'walkr', 'height',
+       'pusha', 'weight', 'atotf', 'rxhibp', 'dadage', 'ahous', 'atoth',
+       'momage', 'shlt', 'iadlfoura', 'walkre', 'walkra', 'walksa', 'uppermob',
+       'aothr', 'grchild'],
+      dtype='object')
