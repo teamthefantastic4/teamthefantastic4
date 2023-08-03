@@ -14,14 +14,15 @@ db = redis.Redis(
 )
 
 def model_predict(input_data):
+def model_predict(input_data):
     """
-    Receives input_data and queues the job into Redis.
+    Receives an image name and queues the job into Redis.
     Will loop until getting the answer from our ML service.
 
     Parameters
     ----------
-    input_data : array
-        Personal data uploaded by the user.
+    image_name : str
+        Name for the image uploaded by the user.
 
     Returns
     -------
@@ -33,20 +34,22 @@ def model_predict(input_data):
     score = None
 
     # Assign an unique ID for this job and add it to the queue.
-    # We need to assign this ID because we must be able to keep track
+    # We need to assing this ID because we must be able to keep track
     # of this particular job across all the services
     
     job_id = str(uuid4())
+
 
     job_data = None
 
     msg = {
         "id": job_id,
-        "input_data": input_data,
+        "image_name": image_name,
     }
 
     job_data = json.dumps(msg)
 
+    # Send the job to the model service
     # Send the job to the model service
 
     db.lpush(
@@ -55,13 +58,13 @@ def model_predict(input_data):
         )
     
     # Loop until we received the response from our ML model
-
     while True:
+
 
         output = db.get(job_id)
 
-        # Check if the data was correctly processed by our ML model
-
+        # Check if the text was correctly processed by our ML model
+        # Don't modify the code below, it should work as expected
         if output is not None:
             output = json.loads(output)
             prediction = output["prediction"]
