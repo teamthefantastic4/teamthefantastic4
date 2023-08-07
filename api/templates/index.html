@@ -126,9 +126,9 @@
                     
                     <div class="diagnosis">
                         <label class="labelPredict" id="predictLabel"></label><br>
-                        <span class="predictTxt" id="predictTxt"></span><br>
+                        <span class="predictText" id="predictTxt"></span><br>
                         <label class="labelScore" id="scoreLabel"></label><br>
-                        <span class="scoreTxt" id="scoreTxt"></span>
+                        <span class="scoreText" id="scoreTxt"></span>
                     </div>
 
                     
@@ -141,6 +141,7 @@
                     </div>
                 </div>
             </div>
+        </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -166,19 +167,18 @@
                         $(".form.first").hide();
                         $(".form.second").show();
 
-                        if(data.success == true){
+                        if(data.success == false){
+                            $("#predictTxt").text(data.prediction);
+                        }
+                        else {
                             $("#predictLabel").text(data.prediction_label)
                             $("#predictTxt").text(data.prediction);
                             $("#scoreLabel").text(data.score_label)
                             $("#scoreTxt").text(data.score);
                         }
-                        
                     },
                     error: function (data) {
-                        if (data.success == false) {
-                            alert("Error attempting a request.");
-                        }
-                        
+                        alert("Error attempting a request.");
                     },
                 });
             });
