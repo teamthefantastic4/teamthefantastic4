@@ -66,12 +66,12 @@ def predict(input_data):
     # Get the prediction from the model
 
     # Send the input data through the trained model to get the predictions
-
-    pred_probability = model.predict(input_data)
-
+    
     # Choose a threshold to classify the person has to hospitalize or not
     
     try:
+
+        pred_probability = model.predict(input_data)
 
         threshold = 0.5
         score = 0
@@ -141,11 +141,11 @@ def classify_process():
         msg_data = msg['input_data']
         msg_id = msg['id']
 
-        pred_msg, pred_probability = predict(msg_data)
+        prediction, score = predict(msg_data)
 
         msg_content = {
-            "prediction": pred_msg,
-            "score": str(pred_probability),
+            "prediction": prediction,
+            "score": str(score),
         }
 
         try:
