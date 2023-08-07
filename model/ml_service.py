@@ -2,21 +2,14 @@ import json
 import os
 import time
 from uuid import uuid4
-#from src import data_utils
-#from src import preprocessing
 
 import numpy as np
 import redis
 import settings
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+#import tensorflow as tf
+from tensorflow import keras
 
-#from sklearn.model_selection import train_test_split
-#from sklearn.preprocessing import MinMaxScaler
-
-# Normalize numerical features to a common scale (between 0 and 1)
-#scaler = MinMaxScaler()
+model = keras.models.load_model('files/model.h5')
 
 db = redis.Redis(
     host=settings.REDIS_IP, 
@@ -25,65 +18,85 @@ db = redis.Redis(
     decode_responses=True
 )
 
-# def predict(input_data):
+def predict(input_data):
 
-#     """
-#     Load data trained and 
-#     received, then, run our ML model to get predictions.
+    """
+    Load data trained and 
+    received, then, run our ML model to get predictions.
 
-#     Parameters
-#     ----------
+    Parameters
+    ----------
 
-#     # Receive input data from the API request
+    # Receive input data from the API request
     
-#     input_data List or Tuple
+    input_data List or Tuple
 
-#     Returns
-#     -------
-#     pred_probability : tuple(str, float)
-#         Model predicted class as a string and the corresponding confidence
-#         score as a number.
-#     """
+    Returns
+     -------
+    prediction, score : tuple(str, float)
     
-#     # Preprocess the input data (assuming 'gender', 'weight', 'BMI', 'age', and 'blood_pressure' are provided)
-#     new_person_data = np.array([
-#         input_data['gender'],
-#         input_data['weight'],
-#         input_data['BMI'],
-#         input_data['age'],
-#         input_data['blood_pressure']
-#     ]).reshape(1, -1)
+        Model predicted class as a string and the corresponding confidence
+        score as a number.
 
-#     # Normalize the input data using the same scaler used for training data
-#     new_person_data_scaled = scaler.transform(new_person_data)
+     """     
+     
+    pred_probability = None
 
-#     pred_probability = None
+    # Adding an extra dimension for batch size
 
-#     #Loading and preprocessing 
+    input_data = np.expand_dims(input_data, axis=1)  
 
-#     #new_person_data_scaled = scaler.transform(new_person_data)
+    # Reshape the original array to have shape (1, 48) filled with zeros
+    desired_shape = (1, 48)
 
-#     # Get the prediction from the model
+    # Assuming you have a numpy array of shape (1, 8)
+    original_array = input_data
 
-#     pred = model.predict(new_person_data_scaled)
+    # Create the sequence (3, 3, 3, 3) to fill the remaining elements
+    sequence = np.array([[3, 3, 3, 3]])
 
-#     # Choose a threshold to classify the person has to hospitalize or not
+    # Calculate the number of times the sequence needs to be repeated
+    num_repeats = (desired_shape[1] - original_array.shape[1]) // sequence.shape[1]
 
-#     ## Agregué la variable 'prediction' para agregarla a los valores que retorna la función
-#     prediction = None
-#     threshold = 0.5
-#     if pred[0][0] >= threshold:
-#         prediction = "The person has to hospitalize next year."
-#     else:
-#         prediction = "The person does not has to hospitalize."
+    # Concatenate the original array and the repeated sequence to get the desired shape
+    completed_array = np.concatenate([original_array, np.tile(sequence, (1, num_repeats))], axis=1)
 
-#     return prediction, pred_probability
+    input_data = completed_array
+
+    # Get the prediction from the model
+
+    # Send the input data through the trained model to get the predictions
+
+    pred_probability = model.predict(input_data)
+
+    # Choose a threshold to classify the person has to hospitalize or not
+    
+    try:
+
+        threshold = 0.5
+        score = 0
+
+        if pred_probability >= threshold:
+            prediction = 'The person has to hospitalize next year.'
+        else:
+            prediction = 'The person does not has to hospitalize.'
+        
+        score = (pred_probability*100)
+
+    except Exception as e:
+        prediction = f'Prediction Error: {e}'
+        score = 0
+
+    # Return Prediction And Probability
+
+    return prediction, score
 
 def predict_temp(input_data):
 
     """
     Temporal function to test connection to Redis and ML model.     
     """
+
     try:
         total = 0
         score = 0
@@ -109,7 +122,6 @@ def predict_temp(input_data):
 
     return prediction, score
 
-
 def classify_process():
     """
     Loop indefinitely asking Redis for new jobs.
@@ -129,7 +141,7 @@ def classify_process():
         msg_data = msg['input_data']
         msg_id = msg['id']
 
-        pred_msg, pred_probability = predict_temp(msg_data)
+        pred_msg, pred_probability = predict(msg_data)
 
         msg_content = {
             "prediction": pred_msg,
@@ -144,49 +156,6 @@ def classify_process():
 
         # Sleep for a bit
         time.sleep(settings.SERVER_SLEEP)
-
-# def preprocess_data():
-    
-#     # Preprocess Data to Train the Model
-
-#     X_train, y_train, X_test, y_test = None
-
-#     train_data, y_train = None
-
-#     app_train, app_test, columns_description = data_utils.get_datasets()
-
-#     X_train, y_train, X_test, y_test = data_utils.get_feature_target(app_train, app_test)
-
-#     train_data, X_val, y_train, y_val = data_utils.get_train_val_sets(X_train, y_train)
-
-#     return train_data, y_train
-
-# def model(input_data):
-
-#     # Create the MLP model, Input should be like this X_train.shape[1]
-#     model = Sequential()
-#     model.add(Dense(64, activation='relu', input_dim=input_data.shape[1]))
-#     model.add(Dense(32, activation='relu'))
-#     model.add(Dense(1, activation='sigmoid'))
-
-#     # Compile the model
-#     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-#     epochs = 100
-#     batch_size = 32
-
-#     # From Preprocessing get train an val data
-
-#     train_data, y_train = preprocess_data()
-
-#     model.fit(train_data, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1)
-
-#     input_data = np.expand_dims(input_data, axis=0)  # Adding an extra dimension for batch size
-
-#     # Send the input data through the trained model to get the predictions
-#     predictions = model.predict(input_data)
-
-#     return predictions
 
 if __name__ == "__main__":
     # Now launch process
