@@ -29,7 +29,7 @@ def result():
 
         # Check if the form has 0 or null values
         if any(value in null_data for key, value in request.form.items()):
-            rpse["prediction"] = "Cargame algo pue!" #"Please complete the form, thank you!"
+            rpse["prediction"] = "Please complete the Form, thank you!"
             return jsonify(rpse)
 
         if rpse['prediction'] == None:
