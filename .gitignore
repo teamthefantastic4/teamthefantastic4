@@ -1,6 +1,7 @@
 # Project files/folders
 uploads
 feedback
+dataset
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
