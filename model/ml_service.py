@@ -6,7 +6,7 @@ from uuid import uuid4
 import numpy as np
 import redis
 import settings
-#import tensorflow as tf
+import tensorflow as tf
 from tensorflow import keras
 
 model = keras.models.load_model('files/model.h5')
@@ -46,22 +46,22 @@ def predict(input_data):
 
     input_data = np.expand_dims(input_data, axis=1)  
 
-    # Reshape the original array to have shape (1, 48) filled with zeros
-    desired_shape = (1, 48)
+    # # Reshape the original array to have shape (1, 48) filled with zeros
+    # desired_shape = (1, 43)
 
-    # Assuming you have a numpy array of shape (1, 8)
-    original_array = input_data
+    # # Assuming you have a numpy array of shape (1, 8)
+    # original_array = input_data
 
-    # Create the sequence (3, 3, 3, 3) to fill the remaining elements
-    sequence = np.array([[3, 3, 3, 3]])
+    # # Create the sequence (3, 3, 3, 3) to fill the remaining elements
+    # sequence = np.array([[3, 3, 3, 3]])
 
-    # Calculate the number of times the sequence needs to be repeated
-    num_repeats = (desired_shape[1] - original_array.shape[1]) // sequence.shape[1]
+    # # Calculate the number of times the sequence needs to be repeated
+    # num_repeats = (desired_shape[1] - original_array.shape[1]) // sequence.shape[1]
 
-    # Concatenate the original array and the repeated sequence to get the desired shape
-    completed_array = np.concatenate([original_array, np.tile(sequence, (1, num_repeats))], axis=1)
+    # # Concatenate the original array and the repeated sequence to get the desired shape
+    # completed_array = np.concatenate([original_array, np.tile(sequence, (1, num_repeats))], axis=1)
 
-    input_data = completed_array
+    # input_data = completed_array
 
     # Get the prediction from the model
 
@@ -73,7 +73,7 @@ def predict(input_data):
 
         pred_probability = model.predict(input_data)
 
-        threshold = 0.5
+        threshold = 0.9
         score = 0
 
         if pred_probability >= threshold:
