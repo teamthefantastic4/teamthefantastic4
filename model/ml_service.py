@@ -44,24 +44,7 @@ def predict(input_data):
 
     # Adding an extra dimension for batch size
 
-    input_data = np.expand_dims(input_data, axis=1)  
-
-    # # Reshape the original array to have shape (1, 48) filled with zeros
-    # desired_shape = (1, 43)
-
-    # # Assuming you have a numpy array of shape (1, 8)
-    # original_array = input_data
-
-    # # Create the sequence (3, 3, 3, 3) to fill the remaining elements
-    # sequence = np.array([[3, 3, 3, 3]])
-
-    # # Calculate the number of times the sequence needs to be repeated
-    # num_repeats = (desired_shape[1] - original_array.shape[1]) // sequence.shape[1]
-
-    # # Concatenate the original array and the repeated sequence to get the desired shape
-    # completed_array = np.concatenate([original_array, np.tile(sequence, (1, num_repeats))], axis=1)
-
-    # input_data = completed_array
+    input_data = np.expand_dims(input_data, axis=0)  
 
     # Get the prediction from the model
 
@@ -91,37 +74,6 @@ def predict(input_data):
 
     return prediction, score
 
-def predict_temp(input_data):
-
-    """
-    Temporal function to test connection to Redis and ML model.     
-    """
-
-    try:
-        total = 0
-        score = 0
-        for value in input_data:
-            total += float(value)
-            if float(value) > score:
-                score = float(value)
-
-        score = (score * 100) / total
-
-        if score >= 80:
-            prediction = 'Very healthy'
-        elif score < 80 and score >= 70:
-            prediction = 'Healthy'
-        elif score < 70 and score >= 50:
-            prediction = 'Stable, but it is recommended that you see a doctor.'
-        else:
-            prediction = 'Please see your doctor!'       
-
-    except Exception as e:
-        prediction = f'Prediction Error: {e}'
-        score = 0
-
-    return prediction, score
-
 def classify_process():
     """
     Loop indefinitely asking Redis for new jobs.
@@ -142,6 +94,9 @@ def classify_process():
         msg_id = msg['id']
 
         prediction, score = predict(msg_data)
+
+        score = np.around(score, 2)
+        score = score[0, 0]
 
         msg_content = {
             "prediction": prediction,
