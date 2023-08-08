@@ -36,3 +36,6 @@ services:
       target: build
     depends_on:
       - redis
+    volumes:
+      - ./files:/src/model/files
+
