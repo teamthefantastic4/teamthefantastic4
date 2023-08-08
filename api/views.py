@@ -37,10 +37,7 @@ def result():
             input_data = [float(value) for key, value in request.form.items()]
             
             ### MODEL ###
-            #prediction, score = model_predict(input_data)
-
-            prediction = "Ahora si funciono wachos!!!"
-            score = 9000
+            prediction, score = model_predict(input_data)
             
             rpse["prediction"] = prediction
             rpse["score"] = score
