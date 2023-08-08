@@ -69,6 +69,7 @@ body {
     min-height: 400px;
     background-color: var(--white);
     overflow: hidden;
+    overflow-y: scroll;
     
 }
 
@@ -105,15 +106,14 @@ form.secActive .form.first {
 }
 
 form.secActive .labelPredict, .labelScore {
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
     color: var(--blue2);
-    -webkit-text-stroke: 1px var(--white);
     text-shadow: 2px 2px 1px var(--blue3);
 }
-form.secActive .predictTxt, .scoreTxt {
+form.secActive .predictText, .scoreText {
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 900;
     color: var(--black2);
     -webkit-text-stroke: 1px var(--white);
     text-shadow: 2px 2px 1px var(--blue3);
@@ -137,9 +137,9 @@ form.secActive .predictTxt, .scoreTxt {
 
 form .fields .input-field {
     display: flex;
-    width: calc(100% / 4 - 15px);
+    width: calc(100% / 6 - 15px);
     flex-direction: column;
-    margin: 4px;
+    margin: 2px 1px;
 }
 
 .input-field label {
@@ -150,18 +150,18 @@ form .fields .input-field {
 
 .input-field input, select {
     outline: none;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: var(--black);
     border-radius: 5px;
     border: 1px solid var(--grey);
-    padding: 0 15px;
-    height: 30px;
-    margin: 8px 0;
+    padding: 0px 8px;
+    height: 28px;
+    margin: 1px 0px;
 }
 
 .input-field input:is(:focus) {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
 }
 
 .container form button, .resetBtn, .backBtn {
@@ -253,9 +253,9 @@ form .backBtn:hover {
 
     form.secActive .labelPredict, .labelScore {
         font-size: 20px;
-    
     }
-    form.secActive .predictTxt, .scoreTxt {
+
+    form.secActive .predictText, .scoreText {
         font-size: 20px;
     }
 }
@@ -267,11 +267,11 @@ form .backBtn:hover {
     }
 
     form.secActive .labelPredict, .labelScore {
-        font-size: 18px;
+        font-size: 15px;
     
     }
-    form.secActive .predictTxt, .scoreTxt {
-        font-size: 18px;
+    form.secActive .predictText, .scoreText {
+        font-size: 15px;
     }
 
 }
