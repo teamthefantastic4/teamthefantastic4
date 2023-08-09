@@ -96,11 +96,14 @@ def classify_process():
         prediction, score = predict(msg_data)
 
         score = np.around(score, 2)
-        score = score[0, 0]
+
+        s = str(score)
+        chars = [']', '['] 
+        result = s.translate(str.maketrans('', '', ''.join(chars)))
 
         msg_content = {
             "prediction": prediction,
-            "score": str(score),
+            "score": result,
         }
 
         try:
