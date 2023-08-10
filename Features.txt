@@ -1,9 +1,7 @@
-['cholst', 'hrtatte', 'grossa',
-       'rxhrtat', 'adla_m', 'batha', 'grossaa', 'adltot_m',
-       'bmi', 'mobila', 'rxdiabi', 'hhid', 'hip_m', 'atotb',
-       'push', 'fallinj', 'hhidc', 'wtresp', 'mobilsev', 'bath',
-        'walks', 'hltc', 'agey', 'ctot1m', 'walkr', 'height',
-       'pusha', 'weight', 'rxhibp', 'dadage', 'ahous', 'atoth',
-       'momage', 'shlt', 'walkra', 'walksa',
-       'aothr', 'grchild'],
-      dtype='object')
+'cholst', 'mobila', 'hrtatte', 'push', 'bmi', 'walks', 'rxhrtat',
+       'grossa', 'walkr', 'rxdiabi', 'hip_m', 'hhid', 'mobilsev', 'fallinj',
+       'agey', 'wtresp', 'rxhibp', 'ctot1m', 'hltc', 'weight', 'grossaa',
+       'momage', 'height', 'bath', 'dadage', 'shlt', 'ahous', 'batha', 'lift',
+       'walksa', 'livsib', 'aothr', 'grchild', 'vscan', 'pusha', 'adltot_m',
+       'adla', 'hosp1y', 'genderf', 'rxhibp.1', 'cncrsurg', 'rxstrok',
+       'rxarthr', 'rxlung_m'
