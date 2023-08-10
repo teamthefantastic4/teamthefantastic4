@@ -50,7 +50,7 @@ def predict(input_data):
 
     # Send the input data through the trained model to get the predictions
     
-    # Choose a threshold to classify the person has to hospitalize or not
+    # Choose a threshold to classify the person needs to be hospitalized or not
     
     try:
 
@@ -60,9 +60,9 @@ def predict(input_data):
         score = 0
 
         if pred_probability >= threshold:
-            prediction = 'The person has to hospitalize next year.'
+            prediction = 'This person needs to be hospitalized next year.'
         else:
-            prediction = 'The person does not has to hospitalize.'
+            prediction = 'This person does not need to be hospitalized.'
         
         score = (pred_probability*100)
 
