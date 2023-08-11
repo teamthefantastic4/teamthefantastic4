@@ -6,7 +6,7 @@ class TestMLService(unittest.TestCase):
 
     def test_predict(self):
 
-        input_data = [1,2,2,2,2,2,2,2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
+        input_data = [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
         pred_name, pred_probability = ml_service.predict(input_data)
         self.assertEqual(pred_name, "This person needs to be hospitalized next year.")
