@@ -115,70 +115,46 @@
                                 <option value=2 class="opt2">Yes</option>
                             </select>
                         </div>
-
+                        <!--hip_m -->
                         <div class="input-field">
-                            <label>Number-11</label>
-                            <input name=n11 type="number" placeholder="Fill this field">
+                            <label>In the past two years, have you had a serious fracture?</label>
+                            <select value=0 name=n11 class="select11">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=1 class="opt1">No</option>
+                                <option value=2 class="opt2">Yes</option>
+                            </select>
                         </div>
-
+                        <!--fallinj -->
                         <div class="input-field">
-                            <label>Number-12</label>
-                            <input name=n12 type="number" placeholder="Fill this field">
+                            <label>In the past 2 years, have you had any falls?</label>
+                            <select value=0 name=n12 class="select12">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=1 class="opt1">No</option>
+                                <option value=2 class="opt2">Yes</option>
+                            </select>
                         </div>
-
+                        <!--agey -->
                         <div class="input-field">
-                            <label>Number-13</label>
-                            <input name=n13 type="number" placeholder="Fill this field">
+                            <label>Please enter your age:</label>
+                            <input type="number" name="n13">
                         </div>
-
+                        <!--weight -->
                         <div class="input-field">
-                            <label>Number-14</label>
-                            <input name=n14 type="number" placeholder="Fill this field">
+                            <label>Please provide your current height and weight:</label>
+                            Height (in meters): <input type="number" name="height"><br>
+                            Weight (in kilograms): <input type="number" name="weight"><br>
+                            <!-- Campo oculto para almacenar el cálculo del BMI -->
+                            <input type="hidden" name="bmi" id="bmi">
                         </div>
-
+                         <!--grossaa -->           
                         <div class="input-field">
-                            <label>Number-15</label>
-                            <input name=n15 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n16 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n17 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n18 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n19 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n20 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n21 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n22 type="number" placeholder="Fill this field">
-                        </div>
-
-                        <div class="input-field">
-                            <label>Number-16</label>
-                            <input name=n23 type="number" placeholder="Fill this field">
+                            <label>Do you have any difficulty performing simple activities like walking,
+                            moving across a room, climbing stairs, getting out of bed, or bathing?</label>
+                            <select value=0 name=n15 class="select15">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=1 class="opt1">No</option>
+                                <option value=2 class="opt2">Yes</option>
+                            </select>
                         </div>
 
                         <div class="input-field">
@@ -377,6 +353,13 @@
             })
 
             $("#submitBtn").click(function () {
+
+            // Calcular BMI y almacenarlo en el campo oculto
+                var height = parseFloat($("input[name='height']").val());
+                var weight = parseFloat($("input[name='weight']").val());
+                var bmi = weight / (height * height);
+                $("#bmi").val(bmi.toFixed(2)); // Almacenar el valor del BMI con dos decimales
+
             // Get the form data
                 var formData = $("#myForm").serialize();
 
