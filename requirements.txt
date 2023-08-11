@@ -8,7 +8,7 @@ numpy==1.24.2
 pandas==1.5.3
 pytest==7.2.1
 seaborn==0.12.2
-sas7bda==2.2.3
+#sas7bda==2.2.3
 scikit_learn==1.2.2
 tensorflow==2.8.0
 lightgbm==2.0.3
