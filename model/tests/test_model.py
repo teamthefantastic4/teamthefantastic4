@@ -2,14 +2,15 @@ import unittest
 
 import ml_service
 
-
 class TestMLService(unittest.TestCase):
-    def test_predict(self):
-        ml_service.settings.UPLOAD_FOLDER = "tests"
-        class_name, pred_probability = ml_service.predict("dog.jpeg")
-        self.assertEqual(class_name, "Eskimo_dog")
-        self.assertAlmostEqual(pred_probability, 0.9346, 5)
 
+    def test_predict(self):
+
+        input_data = [1,2,2,2,2,2,2,2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
+
+        pred_name, pred_probability = ml_service.predict(input_data)
+        self.assertEqual(pred_name, "This person needs to be hospitalized next year.")
+        self.assertAlmostEqual(float(pred_probability), 96.92, 1)
 
 if __name__ == "__main__":
     unittest.main()
