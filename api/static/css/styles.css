@@ -1,4 +1,4 @@
-/*Google font Ppoppins*/
+/*Google font Poppins*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
     --blue: #4070f4;
@@ -7,7 +7,8 @@
     --white: #fff;
     --black: #333;
     --black2: #2e2e2e;
-    --grey: #aaa;
+    --grey: #d3d3d3;
+    --grey2: #a7a7a7;
     --green: #02c40b;
     --red:#ce3434;
 }
@@ -24,7 +25,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--blue);
+    background-color: var(--blue3);
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -32,7 +36,7 @@ body {
     max-width: 1000px;
     width: 100%;
     border-radius: 6px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin: 0px 15px;
     background-color: var(--white);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -41,27 +45,35 @@ body {
 .container header {
     position: relative;
     text-align: right;
-    font-size: 39px;
+    font-size: 45px;
     font-weight: 900;
     height: 150px;
     color: var(--blue);
-    text-shadow: 5px 5px 2px var(--blue3);
+    text-shadow: 8px 8px 2px var(--blue3);
     border-bottom: var(--black2) solid;
     background: url('ederly_health.jpg') no-repeat;
-    background-position-y: -20px;
-    background-size: 50%;
-    transition: all 0.8s linear;
+    background-position-y: -10px;
+    background-size: 40%;
+    transition: all 0.3s linear;
     -webkit-text-stroke: 2px var(--white);
 }
 
 .container h4 {
     position: relative;
     text-align: right;
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--blue2);
+    -webkit-text-stroke: 1px var(--white);
+    text-shadow: 5px 5px 2px var(--blue3);
+}
+
+.container form .title {
+    display: block;
+    margin-top: 40px;
     font-size: 20px;
     font-weight: 700;
-    color: var(--blue);
-    -webkit-text-stroke: 1px var(--white);
-    text-shadow: 2px 2px 1px var(--blue3);
+    color: var(--black);
 }
 
 .container form {
@@ -70,7 +82,6 @@ body {
     background-color: var(--white);
     overflow: hidden;
     overflow-y: scroll;
-    
 }
 
 .container form .form {
@@ -119,15 +130,6 @@ form.secActive .predictText, .scoreText {
     text-shadow: 2px 2px 1px var(--blue3);
 }
 
-.container form .title {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 6px 0;
-    color: var(--black);
-}
-
 .container form .fields {
     display: flex;
     align-items: center;
@@ -137,30 +139,32 @@ form.secActive .predictText, .scoreText {
 
 form .fields .input-field {
     display: flex;
-    width: calc(100% / 6 - 15px);
+    width: calc(100% / 2 - 15px);
     flex-direction: column;
-    margin: 2px 1px;
+    margin: 10px 1px;
 }
 
 .input-field label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--black2);
+    margin-bottom: 0px;
+    word-wrap: break-word;
+}
+
+.input-field select {
+    outline: none;
+    border-radius: 5px;
     font-size: 12px;
     font-weight: 500;
     color: var(--black2);
-}
-
-.input-field input, select {
-    outline: none;
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--black);
-    border-radius: 5px;
     border: 1px solid var(--grey);
     padding: 0px 8px;
     height: 28px;
-    margin: 1px 0px;
+    margin: 0px 0px;
 }
 
-.input-field input:is(:focus) {
+.input-field select:is(:focus) {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
 }
 
@@ -175,7 +179,7 @@ form .fields .input-field {
     outline: none;
     color: var(--white);
     border-radius: 10px;
-    margin: 25px 0;
+    margin: 0 20px;
     background-color: var(--blue);
     transition: all 0.2s linear;
 }
@@ -248,7 +252,7 @@ form .backBtn:hover {
         font-size: 35px;
         background-position-y: 30px;
         background-size: 50%;
-        transition: all 0.8s linear;
+        transition: all 0.3s linear;
     }
 
     form.secActive .labelPredict, .labelScore {
@@ -273,5 +277,19 @@ form .backBtn:hover {
     form.secActive .predictText, .scoreText {
         font-size: 15px;
     }
+
+    .container header {
+        background-position-y: 30px;
+    }
+
+    .container h4 {
+        text-align: center;
+        transition: all 0.8s linear;
+    }
+
+    .container form .title {
+        text-align: center;
+    }
+    
 
 }
