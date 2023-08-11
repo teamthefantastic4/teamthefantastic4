@@ -1,7 +1,0 @@
-'cholst', 'mobila', 'hrtatte', 'push', 'bmi', 'walks', 'rxhrtat',
-       'grossa', 'walkr', 'rxdiabi', 'hip_m', 'hhid', 'mobilsev', 'fallinj',
-       'agey', 'wtresp', 'rxhibp', 'ctot1m', 'hltc', 'weight', 'grossaa',
-       'momage', 'height', 'bath', 'dadage', 'shlt', 'ahous', 'batha', 'lift',
-       'walksa', 'livsib', 'aothr', 'grchild', 'vscan', 'pusha', 'adltot_m',
-       'adla', 'hosp1y', 'genderf', 'rxhibp.1', 'cncrsurg', 'rxstrok',
-       'rxarthr', 'rxlung_m'
