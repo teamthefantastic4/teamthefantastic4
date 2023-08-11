@@ -23,8 +23,14 @@
 
                         <!--agey -->
                         <div class="input-field">
-                            <label>Enter your Age:</label>
-                            <input type="number" name="n1" placeholder="Fill this field">
+                            <label>Select Your Age:</label>
+                            <select value=0 name=n1 class="select1">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=4 class="opt1">50 - 60</option>
+                                <option value=3 class="opt1">61 - 70</option>
+                                <option value=2 class="opt1">71 - 80</option>
+                                <option value=1 class="opt1">Above 80</option>
+                            </select>
                         </div>
 
                         <!--ragender -->
@@ -126,13 +132,26 @@
                         <!--weight-->
                         <div class="input-field">
                             <label>Weight (Kg):</label>
-                            <input name=n10 type="number" placeholder="Fill this field">
+                            <select value=0 name=n10 class="select10">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=4 class="opt1">Below 50</option>
+                                <option value=3 class="opt2">50 To 60</option>
+                                <option value=2 class="opt3">61 To 70</option>
+                                <option value=1 class="opt4">71 To 80</option>
+                            </select>
                         </div>
 
                         <!--height-->
                         <div class="input-field">
                             <label>Height (Meters):</label>
-                            <input name=n11 type="number" placeholder="Fill this field">
+                            <select value=0 name=n11 class="select10">
+                                <option class="none" selected disabled>Select an option</option>
+                                <option value=5 class="opt1">Below 1.50</option>
+                                <option value=4 class="opt2">1.50 To 1.60</option>
+                                <option value=3 class="opt3">1.61 To 1.70</option>
+                                <option value=2 class="opt4">1.71 To 1.80</option>
+                                <option value=1 class="opt4">Above 1.80</option>
+                            </select>
                         </div>
 
                         <!--bmi-->
@@ -197,7 +216,7 @@
                         <!-- walksa -->
                         <div class="input-field">
                             <label>Difficulty-Walking Several Blocks? (Rate) </label>
-                            <select value=0 name=n17 class="select17">
+                            <select value='0' name=n17 class="select17">
                                 <option class="none" selected disabled>Select an option</option>
                                 <option value=1 class="opt1">Some</option>
                                 <option value=2 class="opt2">Much</option>
@@ -235,7 +254,7 @@
                             <label>Had Injures from Any fall?</label>
                             <select value=0 name=n20 class="select20">
                                 <option class="none" selected disabled>Select an option</option>
-                                <option value=0.5 class="opt1">No</option>
+                                <option value=0.1 class="opt1">No</option>
                                 <option value=1 class="opt2">Yes</option>
                             </select>
                         </div>
