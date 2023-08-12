@@ -8,8 +8,14 @@ import redis
 import settings
 import tensorflow as tf
 from tensorflow import keras
+import joblib
+from sklearn.preprocessing import StandardScaler
+import pickle
 
 model = keras.models.load_model('files/model.h5')
+
+# Load the scaler from the file
+loaded_scaler = joblib.load('files/scaler.pkl')
 
 db = redis.Redis(
     host=settings.REDIS_IP, 
@@ -41,10 +47,14 @@ def predict(input_data):
      """     
      
     pred_probability = None
+    score = 0
 
     # Adding an extra dimension for batch size
 
     input_data = np.expand_dims(input_data, axis=0)  
+
+    # Transform new data using the loaded scaler
+    scaled_new_data = loaded_scaler.transform(input_data)
 
     # Get the prediction from the model
 
@@ -54,10 +64,9 @@ def predict(input_data):
     
     try:
 
-        pred_probability = model.predict(input_data)
+        pred_probability = model.predict(scaled_new_data)
 
         threshold = 0.9
-        score = 0
 
         if pred_probability >= threshold:
             prediction = 'This person needs to be hospitalized next year.'
@@ -67,7 +76,7 @@ def predict(input_data):
         score = (pred_probability*100)
 
     except Exception as e:
-        prediction = f'Prediction Error: {e}'
+        prediction = 'Prediction Error: Try Again'
         score = 0
 
     # Return Prediction And Probability
