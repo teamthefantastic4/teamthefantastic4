@@ -20,17 +20,11 @@
                     <span class="title">Personal Details</span>
     
                     <div class="fields">
-
+          
                         <!--agey -->
                         <div class="input-field">
                             <label>Age</label>
-                            <select name="agey">
-                                <option name="agey1" value=0 selected>Select an option</option>
-                                <option name="agey2" value=4>50 - 60</option>
-                                <option name="agey3" value=3>61 - 70</option>
-                                <option name="agey4" value=2>71 - 80</option>
-                                <option name="agey5" value=1>Above 80</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="agey" placeholder="Fill this field">
                         </div>
 
                         <!--ragender -->
@@ -46,39 +40,24 @@
                         <!--momage -->
                         <div class="input-field">
                             <label>Mother's Age (current/at the moment of death)</label>
-                            <select name="momage">
-                                <option name="momage1" value=0 selected>Select an option</option>
-                                <option name="momage2" value=4>18 to 30</option>
-                                <option name="momage3" value=3>31 to 60</option>
-                                <option name="momage4" value=2>61 to 90</option>
-                                <option name="momage5" value=1>More than 91</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="momage" placeholder="Fill this field">
                         </div>
 
                         <!--dadage -->
                         <div class="input-field">
                             <label>Father's Age (current/at the moment of death)</label>
-                            <select name="dadage">
-                                <option name="dadage1" value=0 selected>Select an option</option>
-                                <option name="dadage2" value=4>18 to 30</option>
-                                <option name="dadage3" value=3>31 to 60</option>
-                                <option name="dadage4" value=2>61 to 90</option>
-                                <option name="dadage5" value=1>More than 91</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="dadage" placeholder="Fill this field">
                         </div>
-
+                        
                         <!--livsib-->
                         <div class="input-field">
                             <label>Number of Living Siblings</label>
                             <select name="livsib">
                                 <option name="livsib1" value=0 selected>Select an option</option>
-                                <option name="livsib2" value=1>I don't have</option>
-                                <option name="livsib3" value=2>1</option>
-                                <option name="livsib4" value=3>2</option>
-                                <option name="livsib5" value=4>3</option>
-                                <option name="livsib6" value=5>4</option>
-                                <option name="livsib7" value=6>5</option>
-                                <option name="livsib8" value=7>More than 6</option>
+                                <option name="livsib2" value=1 >1</option>
+                                <option name="livsib3" value=2 >2</option>
+                                <option name="livsib4" value=3 >3</option>
+                                <option name="livsib5" value=4 >4 or More</option>
                             </select>
                         </div>
 
@@ -87,13 +66,10 @@
                             <label>Number of Grandchildren</label>
                             <select name="grchild">
                                 <option name="grchild1" value=0 selected>Select an option</option>
-                                <option name="grchild2" value=1>I dont have</option>
-                                <option name="grchild3" value=2>1</option>
-                                <option name="grchild4" value=3>2</option>
-                                <option name="grchild5" value=4>3</option>
-                                <option name="grchild6" value=5>4</option>
-                                <option name="grchild7" value=6>5</option>
-                                <option name="grchild8" value=7>More than 6</option>
+                                <option name="grchild2" value=1> 1</option>
+                                <option name="grchild3" value=2> 2</option>
+                                <option name="grchild4" value=3> 3</option>
+                                <option name="grchild5" value=4> 4</option>
                             </select>
 
                         </div>
@@ -103,21 +79,23 @@
                             <label>How do you perceive you general health?</label>
                             <select name="shlt">
                                 <option name="shlt1" value=0 selected>Select an option</option>
-                                <option name="shlt2" value=1>Excellent</option>
-                                <option name="shlt3" value=2>Very Good</option>
-                                <option name="shlt4" value=3>Good</option>
-                                <option name="shlt5" value=4>Fair</option>
-                                <option name="shlt6" value=5>Poor</option>
+                                <option name="shlt2" value=1 >Excellent</option>
+                                <option name="shlt3" value=2 >Very Good</option>
+                                <option name="shlt4" value=3 >Good</option>
+                                <option name="shlt5" value=4 >Fair</option>
+                                <option name="shlt6" value=5 >Poor</option>
                             </select>
                         </div>
 
                         <!--vscan-->
                         <div class="input-field">
-                            <label>Do You Have Vision Problems?</label>
+                            <label>Do You Have Vision Problems? Rate 0 a 60 </label>
                             <select name="vscan">
                                 <option name="vscan1" value=0 selected>Select an option</option>
-                                <option name="vscan2" value=0.1>No</option>
-                                <option name="vscan3" value=1>Yes</option>
+                                <option name="vscan2" value=7.5 >0 a 15</option>
+                                <option name="vscan3" value=22.5>16 a 30</option>
+                                <option name="vscan4" value=37.5>31 a 45</option>
+                                <option name="vscan5" value=52.5>46 a 60</option>
                             </select>
                         </div>
                         
@@ -134,38 +112,19 @@
                         <!--weight-->
                         <div class="input-field">
                             <label>Weight (Kilograms)</label>
-                            <select name="weight">
-                                <option name="weight1" value=0 selected>Select an option</option>
-                                <option name="weight2" value=4>Below 50</option>
-                                <option name="weight3" value=3>50 To 60</option>
-                                <option name="weight4" value=2>61 To 70</option>
-                                <option name="weight5" value=1>71 To 80</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="weight" placeholder="Fill this field">
                         </div>
 
                         <!--height-->
                         <div class="input-field">
                             <label>Height (Meters)</label>
-                            <select name="height">
-                                <option name="height1" value=0 selected>Select an option</option>
-                                <option name="height2" value=5>Below 1.50</option>
-                                <option name="height3" value=4>1.50 To 1.60</option>
-                                <option name="height4" value=3>1.61 To 1.70</option>
-                                <option name="height5" value=2>1.71 To 1.80</option>
-                                <option name="height6" value=1>Above 1.80</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="height" placeholder="Fill this field">
                         </div>
 
                         <!--bmi-->
                         <div class="input-field">
                             <label>Body Mass Index ( W / (H * H) )</label>
-                            <select name="bmi">
-                                <option name="bmi1" value=0 selected>Select an option</option>
-                                <option name="bmi2" value=18>Below 18.5</option>
-                                <option name="bmi3" value=23>18.5 To 24.9</option>
-                                <option name="bmi4" value=27>25 To 29.9</option>
-                                <option name="bmi5" value=33>30 To 34.9</option>
-                            </select>
+                            <input type="number" value=0 min=0 name="bmi" placeholder="Fill this field">
                         </div>
 
                         <!--mobila -->           
@@ -183,14 +142,11 @@
 
                         <!--grossaa -->           
                         <div class="input-field">
-                            <label>Describe Your Gross Motor Skills (biking, climbing, jumping)</label>
+                            <label>Difficulty with Gross Motor Skills (biking, climbing, jumping)</label>
                             <select name="grossaa">
-                                <option name="grossaa1" value=0 selected>Select an option</option>
-                                <option name="grossaa2" value=1>Excellent</option>
-                                <option name="grossaa3" value=2>Very good</option>
-                                <option name="grossaa4" value=3>Good</option>
-                                <option name="grossaa5" value=4>Fair</option>
-                                <option name="grossaa6" value=5>Poor</option>
+                                <option name="grossaa1" value=0  selected>Select an option</option>
+                                <option name="grossaa2" value=0.1 >No</option>
+                                <option name="grossaa3" value=1   >Yes</option>
                             </select>
                         </div>
 
@@ -199,9 +155,8 @@
                             <label>Do You Have Difficulty in Performing Daily Activities?</label>
                             <select name="adltot_m">
                                 <option name="adltot_m1" value=0 selected>Select an option</option>
-                                <option name="adltot_m2" value=1>No</option>
-                                <option name="adltot_m3" value=2>Yes</option>
-                                <option name="adltot_m4" value=4>Sometimes</option>
+                                <option name="adltot_m2" value=0.1>No</option>
+                                <option name="adltot_m3" value=1>  Yes</option>
                             </select>
                         </div>
 
@@ -217,37 +172,31 @@
 
                         <!-- walksa -->
                         <div class="input-field">
-                            <label>How Much Difficulty Do You Have in Walking Several Blocks?</label>
+                            <label>Do You Have Difficulty in Walking Several Blocks?</label>
                             <select name="walksa">
                                 <option name="walksa1" value=0 selected>Select an option</option>
-                                <option name="walksa2" value=1>Very Little Difficulty</option>
-                                <option name="walksa3" value=2>Moderate Difficulty</option>
-                                <option name="walksa4" value=3>Considerable Difficulty</option>
-                                <option name="walksa5" value=4>Severe Difficulty</option>
+                                <option name="walksa2" value=0.1>No</option>
+                                <option name="walksa3" value=1>Yes</option>
                             </select>
                         </div>
 
                         <!-- push -->
                         <div class="input-field">
-                            <label>How Much Difficulty Do You Have in Pushing and/or Pulling Large Objects?</label>
+                            <label>Difficulty in Pushing and/or Pulling Large Objects?</label>
                             <select name="push">
                                 <option name="push1" value=0 selected>Select an option</option>
-                                <option name="push2" value=1>Very Little Difficulty</option>
-                                <option name="push3" value=2>Moderate Difficulty</option>
-                                <option name="push4" value=3>Considerable Difficulty</option>
-                                <option name="push5" value=4>Severe Difficulty</option>
+                                <option name="push2" value=0.1>No</option>
+                                <option name="push3" value=1  >Yes</option>                                
                             </select>
                         </div>
 
                         <!-- lift -->
                         <div class="input-field">
-                            <label>How Much Difficulty Do You Have in Lifting +5 Kgs?</label>
+                            <label>Difficulty Do You Have in Lifting +5 Kgs?</label>
                             <select name="lift">
                                 <option name="lift1" value=0 selected>Select an option</option>
-                                <option name="lift2" value=1>Very Little Difficulty</option>
-                                <option name="lift3" value=2>Moderate Difficulty</option>
-                                <option name="lift4" value=3>Considerable Difficulty</option>
-                                <option name="lift5" value=4>Severe Difficulty</option>
+                                <option name="lift2" value=0.1>No</option>
+                                <option name="lift3" value=1>Yes</option>
                             </select>
                         </div>
 
