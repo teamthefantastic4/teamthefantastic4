@@ -5,7 +5,7 @@ There are 2 EDAs, 1_EDA_And_Reshaping.ipynb in wich we reshape the original data
 You need to copy the resulting best model file obtain with the EDA "2_Model_Training" in the model/files directory in order to load the model.h5 file to the Docker container.
 
 ## - Model
-You need to copy the resulting best model file obtain with the EDA "2_Model_Training" in the model/files directory in order to load the model.h5 file.
+You need to copy the resulting best model file obtain with the EDA "2_Model_Training" in the model/files directory in order to load the model.h5 file. Besides, the model works with a scaler file, that can be obtained by means of the process that generates these weights and that is in the notebook, in the Model Test.
 
 ## - Unit Test
 You need to copy also the resulting model file in the model/tests/files directory in order to perform this. 
